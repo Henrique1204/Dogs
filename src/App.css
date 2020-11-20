@@ -1,4 +1,46 @@
-input {
-    margin-bottom: 1rem;
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: inherit;
+    color: inherit;
+}
+
+html {
+    --tipografia-um: Helvetica, Arial, sans-serif;
+    --tipografia-dois: "Spectral", Georgia;
+}
+
+body {
+    margin: 0px;
+    font-family: var(--tipografia-um);
+    color: #333;
+}
+
+h1, h2, h3, h4, p {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
     display: block;
+}
+
+button, input {
+    font-size: 1rem;
+    display: block;
+}
+
+.container {
+    max-width: 50rem;
+    padding: 0px 1rem;
+    margin: 0 auto;
 }
