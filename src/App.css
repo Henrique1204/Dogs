@@ -11,6 +11,7 @@ html {
 
 body {
     margin: 0px;
+    padding-top: 4rem;
     font-family: var(--tipografia-um);
     color: #333;
 }
