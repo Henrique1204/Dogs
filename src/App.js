@@ -14,7 +14,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} ></Route>
-        <Route path="/login" element={<Login />} ></Route>
+        {/* IMPORTANTE: Login terá subrotas, por isso é preciso adicionar o '/*' */}
+        <Route path="/login/*" element={<Login />} ></Route>
       </Routes>
 
       <Footer />
