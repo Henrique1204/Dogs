@@ -3,32 +3,18 @@ import { Link } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import Input from "../Forms/Input/Input";
 import Button from "../Forms/Button/Button";
+import { UserContext } from "../../UserContext";
 
 const LoginForm = () => {
     const username = useForm();
-    const password = useForm("senha");
+    const password = useForm();
+    const { userLogin } = React.useContext(UserContext);
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         if (username.validar() && password.validar()) {
-            fetch('http://dogsapi.teste/json/jwt-auth/v1/token', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username: username.valor,
-                    password: password.valor
-                })
-            }).then((res) => {
-                console.log(res);
-                return res.json();
-            }).then((json) => {
-                console.log(json);
-            }).catch((erro) => {
-                console.log(erro)
-            });
+            userLogin(username.valor, password.valor);
         }
     }
 
