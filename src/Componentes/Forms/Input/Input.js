@@ -1,4 +1,5 @@
 import React from "react";
+import Erro from "../../Feedback/Erro";
 import estilos from "./Input.module.css";
 
 const Input = ({label, type, name, valor, onChange, erro, onBlur}) => {
@@ -16,7 +17,7 @@ const Input = ({label, type, name, valor, onChange, erro, onBlur}) => {
                 onBlur={onBlur}
             />
 
-            {erro && <small className={estilos.erro}>{erro}</small>}
+            <Erro erro={erro} estilo={{margin: "0.25rem 0 0", fontSize: "0.875rem"}} />
         </div>
     );
 };
