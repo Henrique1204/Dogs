@@ -4,7 +4,7 @@
     gap: 1rem;
 }
 
-.nav a, .nav button {
+.nav a, .nav button, .mobileButton {
     width: 40px;
     height: 40px;
     border-radius: 0.2rem;
@@ -33,4 +33,81 @@
 
 .nav a.ativo svg > * {
     fill: #FB1;
+}
+
+.mobileButton {
+    padding: 0px;
+}
+
+.mobileButton::after {
+    content: "";
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 2px;
+    background-color: currentColor;
+    display: block;
+    box-shadow: 0 6px currentColor, 0 -6px currentColor;
+    transition: 0.2s;
+}
+
+.mobileButton:hover,
+.mobileButton:focus,
+.mobileButtonAtivo {
+    border-color: #FB1;
+    color: #FB1;
+    background-color: #FFF;
+    box-shadow: 0 0 0 3px #FEA;
+    outline: none;
+}
+
+.mobileButtonAtivo::after {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    box-shadow: 0  8px currentColor, 0 -8px currentColor;
+    transform: rotate(90deg);
+}
+
+.navMobile {
+    padding: 0 1rem;
+    border-radius: 0.2rem;
+    background-color: #FFF;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    display: block;
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    opacity: 0;
+    transform: translateX(-10px);
+    pointer-events: none;
+}
+
+.navMobile a, .navMobile button {
+    width: 100%;
+    padding: 0.5rem 0;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navMobile a {
+    border-bottom: 1px solid #EEE;
+}
+
+.navMobile svg {
+    margin-right: 0.5rem;
+}
+
+.navMobile a:hover svg > *, .navMobile button:hover svg > * {
+    fill: #FB1;
+}
+
+.navMobileAtivo {
+    opacity: 1;
+    transform: initial;
+    transition: 0.3s;
+    z-index: 100;
+    pointer-events: initial;
 }
