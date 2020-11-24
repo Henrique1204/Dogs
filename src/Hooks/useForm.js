@@ -6,8 +6,8 @@ const tipos = {
         menssagem: "Preencha um e-mail válido."
     },
     senha: {
-        regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        menssagem: "Mínimo 8 caractes, 1 letra e 1 numero."
+        regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+        menssagem: "Mínimo 8 caractes, 1 letra maiúscula e 1 numero."
     }
 }
 
