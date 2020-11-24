@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import LoginForm from "./LoginForm/LoginForm.js";
-import LoginCriar from "./LoginCriar/LoginCriar.js";
+import LoginCriar from "./LoginCriar.js";
 import LoginPerdeuSenha from "./LoginPerdeuSenha.js";
 import LoginResetarSenha from "./LoginResetarSenha.js";
 import { UserContext } from "../../UserContext";

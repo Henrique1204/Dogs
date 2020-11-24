@@ -1,15 +1,19 @@
 import React from "react";
-import Input from "../../Forms/Input/Input.js";
-import Button from "../../Forms/Button/Button.js";
-import useForm from "../../../Hooks/useForm.js";
-import { USER_POST } from "../../../api.js";
-import { UserContext } from "../../../UserContext.js";
+import Input from "../Forms/Input/Input.js";
+import Button from "../Forms/Button/Button.js";
+import { USER_POST } from "../../api.js";
+import { UserContext } from "../../UserContext.js";
+import useForm from "../../Hooks/useForm.js";
+import useFetch from "../../Hooks/useFetch.js";
+import Erro from "../Feedback/Erro.js";
 
 const LoginCriar = () => {
     const username = useForm();
     const email = useForm("email");
     const password = useForm("senha");
-    const { userLogin } = React.useContext(UserContext)
+    const { userLogin } = React.useContext(UserContext);
+
+    const { loading, erro, request } = useFetch();
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -20,9 +24,9 @@ const LoginCriar = () => {
             password: password.valor,
         });
 
-        const res = await fetch(url, options);
+        const { response } = await request(url, options);
 
-        if (res.ok) userLogin(username.valor, password.valor);
+        if (response.ok) userLogin(username.valor, password.valor);
     }
 
     return (
@@ -34,7 +38,15 @@ const LoginCriar = () => {
                 <Input label="E-mail:" type="email" name="email" {...email} />
                 <Input label="Senha:" type="password" name="senha" {...password} />
 
-                <Button>Cadastrar</Button>
+                {
+                    (loading) ? (
+                        <Button disabled>Cadastrando...</Button>
+                    ) : (
+                        <Button>Cadastrar</Button>
+                    )
+                }
+
+                <Erro erro={erro} />
             </form>
         </section>
     );
