@@ -6,6 +6,8 @@ import Home from "./Componentes/Home.js";
 import Login from "./Componentes/Login/Login.js";
 import Footer from "./Componentes/Footer/Footer.js";
 import { UserStorage } from "./UserContext.js";
+import Usuario from "./Componentes/Usuario/Usuario.js";
+import RotaProtegida from "./Componentes/RotaProtegida";
 
 function App() {
   return (
@@ -21,7 +23,8 @@ function App() {
           {/* Define as rotas */}
           <Route path="/" element={<Home />} ></Route>
           {/* IMPORTANTE: Login terá subrotas, por isso é preciso adicionar o '/*' */}
-          <Route path="/login/*" element={<Login />} ></Route>
+          <Route path="login/*" element={<Login />} ></Route>
+          <RotaProtegida path="conta/*" element={<Usuario />} ></RotaProtegida>
         </Routes>
 
         {/* Conteúdo */}
