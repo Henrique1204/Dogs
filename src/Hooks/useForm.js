@@ -8,6 +8,10 @@ const tipos = {
     senha: {
         regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
         menssagem: "Mínimo 8 caractes, 1 letra maiúscula e 1 numero."
+    },
+    numero: {
+        regex: /^\d+$/,
+        menssagem: "Utilize apenas números"
     }
 }
 
