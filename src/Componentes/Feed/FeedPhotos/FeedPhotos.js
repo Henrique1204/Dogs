@@ -6,7 +6,7 @@ import Loading from "../../Feedback/Loading.js";
 import useFetch from "../../../Hooks/useFetch.js";
 import { PHOTOS_GET } from "../../../api.js";
 
-const FeedPhotos = () => {
+const FeedPhotos = ({ setModalPhoto }) => {
     const { dados, loading, erro, request } = useFetch();
 
     React.useEffect(() => {
@@ -31,7 +31,11 @@ const FeedPhotos = () => {
             <ul className={`animarEsquerda ${estilos.feed}`}>
                 {
                     dados.map((photo) => (
-                        <FeedPhotosItem key={photo.id} photo={photo} /> 
+                        <FeedPhotosItem
+                            key={photo.id}
+                            photo={photo}
+                            setModalPhoto={setModalPhoto}
+                        /> 
                     ))
                 }
             </ul>
