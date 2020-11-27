@@ -4,6 +4,7 @@ import estilos from "./PhotoContent.module.css";
 import PhotoComments from "../PhotoComments/PhotoComments.js";
 import { UserContext } from "../../../UserContext";
 import PhotoDelete from "../PhotoDelete/PhotoDelete";
+import Imagem from "../../Feedback/Imagem/Imagem";
 
 const PhotoContent = ({ dados }) => {
     const user = React.useContext(UserContext);
@@ -12,7 +13,7 @@ const PhotoContent = ({ dados }) => {
     return (
         <div className={estilos.photo}>
             <div className={estilos.img}>
-                <img src={photo.src} alt={photo.title}/>
+                <Imagem src={photo.src} alt={photo.title} />
             </div>
 
             <div className={estilos.details}>
