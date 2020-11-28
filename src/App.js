@@ -8,6 +8,8 @@ import Footer from "./Componentes/Footer/Footer.js";
 import { UserStorage } from "./UserContext.js";
 import Usuario from "./Componentes/Usuario/Usuario.js";
 import RotaProtegida from "./Componentes/RotaProtegida";
+import Photo from "./Componentes/Photo/Photo";
+import PerfilUsuario from "./Componentes/Usuario/PerfilUsuario";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           {/* IMPORTANTE: Login terá subrotas, por isso é preciso adicionar o '/*' */}
           <Route path="login/*" element={<Login />} ></Route>
           <RotaProtegida path="conta/*" element={<Usuario />} ></RotaProtegida>
+          <Route path="foto/:id" element={<Photo />} ></Route>
+          <Route path="perfil/:user" element={<PerfilUsuario />} ></Route>
         </Routes>
 
         {/* Conteúdo */}

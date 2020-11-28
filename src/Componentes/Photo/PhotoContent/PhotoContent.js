@@ -6,12 +6,12 @@ import { UserContext } from "../../../UserContext";
 import PhotoDelete from "../PhotoDelete/PhotoDelete";
 import Imagem from "../../Feedback/Imagem/Imagem";
 
-const PhotoContent = ({ dados }) => {
+const PhotoContent = ({ dados, single }) => {
     const user = React.useContext(UserContext);
     const { photo, comments } = dados;
 
     return (
-        <div className={estilos.photo}>
+        <div className={`${estilos.photo} ${single ? estilos.single : ""}`}>
             <div className={estilos.img}>
                 <Imagem src={photo.src} alt={photo.title} />
             </div>
@@ -39,7 +39,7 @@ const PhotoContent = ({ dados }) => {
                 </ul>
             </div>
 
-            <PhotoComments id={photo.id} comments={comments} />
+            <PhotoComments id={photo.id} comments={comments} single={single} />
         </div>
     );
 };
