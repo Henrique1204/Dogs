@@ -40,7 +40,7 @@ const LoginForm = () => {
                 <Erro erro={erro} estilo={{fontSize: "1rem"}} />
             </form>
 
-            <Link to="login/perdeu" className={estilos.perdeu} >Perdeu a senha?</Link>
+            <Link to="/login/perdeu" className={estilos.perdeu} >Perdeu a senha?</Link>
 
             <div className={estilos.cadastro}>
                 <h2 className={estilos.subtitulo}>Cadastra-se</h2>
