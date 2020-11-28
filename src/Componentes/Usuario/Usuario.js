@@ -6,12 +6,15 @@ import PostarFotoUsuario from "./PostarFotoUsuario/PostarFotoUsuario";
 import EstatisticasUsuario from "./EstatisticasUsuario/EstatisticasUsuario";
 import { UserContext } from "../../UserContext";
 import RotaDesconhecida from "../RotaDesconhecida";
+import Head from "../Head";
 
 const Usuario = () => {
     const { dados } = React.useContext(UserContext);
 
     return (
         <section className="container">
+            <Head title="Minha conta" />
+
             <HeaderUsuario />
 
             <Routes>

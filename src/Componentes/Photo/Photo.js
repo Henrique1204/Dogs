@@ -4,6 +4,7 @@ import { PHOTO_GET } from "../../api";
 import useFetch from "../../Hooks/useFetch";
 import Erro from "../Feedback/Erro";
 import Loading from "../Feedback/Loading";
+import Head from "../Head";
 import PhotoContent from "./PhotoContent/PhotoContent";
 
 const Photo = () => {
@@ -22,6 +23,7 @@ const Photo = () => {
     if (dados) {
         return (
             <section className="container mainContainer">
+                <Head title={dados.photo.title} />
                 <PhotoContent dados={dados} single={true} />
             </section>
         )

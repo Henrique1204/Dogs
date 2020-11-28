@@ -7,6 +7,7 @@ import Input from "../../Forms/Input/Input";
 import Button from "../../Forms/Button/Button";
 import { UserContext } from "../../../UserContext";
 import Erro from "../../Feedback/Erro";
+import Head from "../../Head";
 
 const LoginForm = () => {
     const username = useForm();
@@ -23,6 +24,7 @@ const LoginForm = () => {
 
     return (
         <section className="animarEsquerda">
+            <Head title="Login" />
             <h1 className="titulo">Login</h1>
 
             <form className={estilos.form} onSubmit={handleSubmit}>

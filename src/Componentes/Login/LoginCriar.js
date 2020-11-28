@@ -6,6 +6,7 @@ import { UserContext } from "../../UserContext.js";
 import useForm from "../../Hooks/useForm.js";
 import useFetch from "../../Hooks/useFetch.js";
 import Erro from "../Feedback/Erro.js";
+import Head from "../Head.js";
 
 const LoginCriar = () => {
     const username = useForm();
@@ -31,6 +32,7 @@ const LoginCriar = () => {
 
     return (
         <section className="animarEsquerda">
+            <Head title="Cadastro" />
             <h1 className="titulo">Cadastre-se</h1>
 
             <form onSubmit={handleSubmit}>
