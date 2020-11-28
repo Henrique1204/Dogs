@@ -44,6 +44,13 @@ button, input {
     display: block;
 }
 
+.App {
+    min-height: calc(100vh + 10rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 /* Estilos padrões */
 .container {
     max-width: 50rem;
