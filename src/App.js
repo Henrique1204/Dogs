@@ -10,6 +10,7 @@ import Usuario from "./Componentes/Usuario/Usuario.js";
 import RotaProtegida from "./Componentes/RotaProtegida";
 import Photo from "./Componentes/Photo/Photo";
 import PerfilUsuario from "./Componentes/Usuario/PerfilUsuario";
+import RotaDesconhecida from "./Componentes/RotaDesconhecida";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <RotaProtegida path="conta/*" element={<Usuario />} ></RotaProtegida>
           <Route path="foto/:id" element={<Photo />} ></Route>
           <Route path="perfil/:user" element={<PerfilUsuario />} ></Route>
+          <Route path="*" element={<RotaDesconhecida />} ></Route>
         </Routes>
 
         {/* Conteúdo */}

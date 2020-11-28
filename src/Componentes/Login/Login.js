@@ -6,6 +6,7 @@ import LoginPerdeuSenha from "./LoginPerdeuSenha.js";
 import LoginResetarSenha from "./LoginResetarSenha.js";
 import { UserContext } from "../../UserContext";
 import estilos from "./Login.module.css";
+import RotaDesconhecida from "../RotaDesconhecida.js";
 
 const Login = () => {
     const { login } = React.useContext(UserContext);
@@ -20,6 +21,7 @@ const Login = () => {
                     <Route path="/criar" element={<LoginCriar />} />
                     <Route path="/perdeu" element={<LoginPerdeuSenha />} />
                     <Route path="/resetar" element={<LoginResetarSenha />} />
+                    <Route path="*" element={<RotaDesconhecida />} ></Route>
                 </Routes>
             </div>
         </section>
