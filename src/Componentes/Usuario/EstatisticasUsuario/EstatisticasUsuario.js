@@ -1,10 +1,11 @@
 import React from "react";
 import Head from "../../Head";
 import Loading from "../../Feedback/Loading.js";
-import GrificosUsuario from "../GraficosUsuario/GraficosUsuario.js";
 import Erro from "../../Feedback/Erro.js";
 import useFetch from "../../../Hooks/useFetch.js";
 import { STATS_GET } from "../../../api";
+
+const GraficosUsuario = React.lazy(() => import("../GraficosUsuario/GraficosUsuario.js"));
 
 const EstatisticasUsuario = () => {
     const { dados, erro, loading, request } = useFetch();
@@ -24,10 +25,10 @@ const EstatisticasUsuario = () => {
 
     if (dados) {
         return (
-            <div>
+            <React.Suspense fallback={<div></div>}>
                 <Head title="Estátisticas" />
-                <GrificosUsuario dados={dados} />
-            </div>
+                <GraficosUsuario dados={dados} />
+            </React.Suspense>
         );
     } else {
         return null
