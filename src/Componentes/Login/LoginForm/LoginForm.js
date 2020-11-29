@@ -39,7 +39,7 @@ const LoginForm = () => {
                     )
                 }
 
-                <Erro erro={erro} estilo={{fontSize: "1rem"}} />
+                <Erro erro={(erro) && "Dados incorretos!"} estilo={{fontSize: "1rem"}} />
             </form>
 
             <Link to="/login/perdeu" className={estilos.perdeu} >Perdeu a senha?</Link>

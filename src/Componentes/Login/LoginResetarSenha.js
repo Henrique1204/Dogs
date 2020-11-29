@@ -43,7 +43,7 @@ const LoginResetarSenha = () => {
     }, []);
 
     return (
-        <section>
+        <section className="animarEsquerda">
             <Head title="Resetar senha" />
             <h1 className="titulo">Resete a senha</h1>
 

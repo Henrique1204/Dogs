@@ -25,7 +25,7 @@ const LoginPerdeuSenha = () => {
     }
 
     return (
-        <section>
+        <section className="animarEsquerda">
             <Head title="Perdeu a senha" />
             <h1 className="titulo">Perdeu a senha</h1>
 
