@@ -12,8 +12,6 @@ const Feed = ({ user }) => {
     const { loading, erro, lista , infinite} = useSelector((state) => state.feed);
     const dispatch = useDispatch();
 
-    const [modalPhoto, setModalPhoto] = React.useState(null);
-
     React.useEffect(() => {
         dispatch(resetFeedState());
         dispatch(loadNewPhotos({ user, total: 6 }));
@@ -49,8 +47,8 @@ const Feed = ({ user }) => {
 
     return (
         <>
-            { modalPhoto && <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} /> }
-            { lista.length > 0 && <FeedPhotos setModalPhoto={setModalPhoto} /> }
+            <FeedModal />
+            { lista.length > 0 && <FeedPhotos /> }
             { loading && <Loading /> }
             { erro && <Erro erro={erro} /> }
         </>
