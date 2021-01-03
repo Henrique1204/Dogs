@@ -4,14 +4,14 @@ import LoginForm from "./LoginForm/LoginForm.js";
 import LoginCriar from "./LoginCriar.js";
 import LoginPerdeuSenha from "./LoginPerdeuSenha.js";
 import LoginResetarSenha from "./LoginResetarSenha.js";
-import { UserContext } from "../../UserContext";
 import estilos from "./Login.module.css";
 import RotaDesconhecida from "../RotaDesconhecida.js";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-    const { login } = React.useContext(UserContext);
+    const { dados } = useSelector((state) => state.user);
 
-    if (login === true) return <Navigate to="/conta" />
+    if (dados) return <Navigate to="/conta" />
 
     return (
         <section className={estilos.login}>

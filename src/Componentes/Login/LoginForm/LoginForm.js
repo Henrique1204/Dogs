@@ -5,20 +5,27 @@ import estiloBtn from "../../Forms/Button/Button.module.css";
 import useForm from "../../../Hooks/useForm";
 import Input from "../../Forms/Input/Input";
 import Button from "../../Forms/Button/Button";
-import { UserContext } from "../../../UserContext";
 import Erro from "../../Feedback/Erro";
 import Head from "../../Head";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../../store/user.js";
 
-const LoginForm = () => {
+function LoginForm() {
+    // Estados globais.
+    const { user, token } = useSelector((state) => state);
+    const loading = user.loading || token.loading;
+    const erro = user.erro || token.erro;
+    const dispatch = useDispatch();
+
+    // Estados locais.
     const username = useForm();
     const password = useForm();
-    const { userLogin, erro, loading } = React.useContext(UserContext);
 
     async function handleSubmit(event) {
         event.preventDefault();
 
         if (username.validar() && password.validar()) {
-            userLogin(username.valor, password.valor);
+            dispatch(userLogin({ username: username.valor, password: password.valor }));
         }
     }
 
@@ -31,18 +38,16 @@ const LoginForm = () => {
                 <Input label="Usuário:" type="text" name="username" {...username} />
                 <Input label="Senha:" type="password" name="password" {...password} />
 
-                {
-                    (loading) ? (
-                        <Button disabled >Carregando...</Button>
-                    ) : (
+                {(loading) ? (
+                    <Button disabled>Carregando...</Button>
+                ) : (
                         <Button>Entrar</Button>
-                    )
-                }
+                    )}
 
-                <Erro erro={(erro) && "Dados incorretos!"} estilo={{fontSize: "1rem"}} />
+                <Erro erro={(erro) && "Dados incorretos!"} estilo={{ fontSize: "1rem" }} />
             </form>
 
-            <Link to="/login/perdeu" className={estilos.perdeu} >Perdeu a senha?</Link>
+            <Link to="/login/perdeu" className={estilos.perdeu}>Perdeu a senha?</Link>
 
             <div className={estilos.cadastro}>
                 <h2 className={estilos.subtitulo}>Cadastra-se</h2>
@@ -52,6 +57,6 @@ const LoginForm = () => {
             </div>
         </section>
     );
-};
+}
 
 export default LoginForm;

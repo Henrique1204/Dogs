@@ -4,12 +4,12 @@ import HeaderUsuario from "./HeaderUsuario/HeaderUsuario";
 import Feed from "../Feed/Feed.js";
 import PostarFotoUsuario from "./PostarFotoUsuario/PostarFotoUsuario";
 import EstatisticasUsuario from "./EstatisticasUsuario/EstatisticasUsuario";
-import { UserContext } from "../../UserContext";
 import RotaDesconhecida from "../RotaDesconhecida";
 import Head from "../Head";
+import { useSelector } from "react-redux";
 
 const Usuario = () => {
-    const { dados } = React.useContext(UserContext);
+    const { dados }  = useSelector((state) => state.user);
 
     return (
         <section className="container">

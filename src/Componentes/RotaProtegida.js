@@ -1,12 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Navigate, Route } from "react-router-dom";
-import { UserContext } from "../UserContext";
 
 const RotaProtegida = (props) => {
-    const { login } = React.useContext(UserContext);
+    const { dados } = useSelector((state) => state.user);
 
-    if (login === true) return <Route {...props} />;
-    else if (login === false) return <Navigate to="/login" />;
+    if (dados) return <Route {...props} />;
+    else if (dados === null) return <Navigate to="/login" />;
     else return null;
 };
 
