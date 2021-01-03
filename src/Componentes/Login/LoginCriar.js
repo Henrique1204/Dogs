@@ -2,17 +2,19 @@ import React from "react";
 import Input from "../Forms/Input/Input.js";
 import Button from "../Forms/Button/Button.js";
 import { USER_POST } from "../../api.js";
-import { UserContext } from "../../UserContext.js";
 import useForm from "../../Hooks/useForm.js";
 import useFetch from "../../Hooks/useFetch.js";
 import Erro from "../Feedback/Erro.js";
 import Head from "../Head.js";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../store/user.js";
 
 const LoginCriar = () => {
+    const dispatch =  useDispatch();
+
     const username = useForm();
     const email = useForm("email");
     const password = useForm("senha");
-    const { userLogin } = React.useContext(UserContext);
 
     const { loading, erro, request } = useFetch();
 
@@ -27,7 +29,7 @@ const LoginCriar = () => {
 
         const { response } = await request(url, options);
 
-        if (response.ok) userLogin(username.valor, password.valor);
+        if (response.ok) dispatch(userLogin({ username: username.valor, password: password.valor }));
     }
 
     return (

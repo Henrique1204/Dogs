@@ -1,10 +1,13 @@
 import React from "react";
-import { UserContext } from "../../../UserContext.js";
+import { useSelector } from "react-redux";
 import PhotoCommentsForm from "../PhotoCommentsForm/PhotoCommentsForm.js";
 import estilos from "./PhotoComments.module.css";
 
 const PhotoComments = (props) => {
-    const { login } = React.useContext(UserContext);
+    // Estados globais.
+    const { dados } = useSelector((state) => state.user);
+
+    // Estados locais.
     const [comments, setComments] = React.useState(() => props.comments);
     const commentsSection = React.useRef(null);
 
@@ -25,7 +28,7 @@ const PhotoComments = (props) => {
                 }
             </ul>
 
-            {login && <PhotoCommentsForm id={props.id} setComments={setComments} single={props.single} />}
+            {dados && <PhotoCommentsForm id={props.id} setComments={setComments} single={props.single} />}
         </>
     );
 };

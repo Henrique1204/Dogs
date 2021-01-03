@@ -15,7 +15,7 @@ const createAsyncSlice = (config) => {
       loading: false,
       dados: null,
       erro: null,
-      ...config.initialState,
+      ...config.initialState
     },
     reducers: {
       fetchStarted(state) {
@@ -31,8 +31,13 @@ const createAsyncSlice = (config) => {
         state.dados = null;
         state.erro = action.payload;
       },
-      ...config.reducers,
-    },
+      resetState(state) {
+        state.loading = false;
+        state.dados = null;
+        state.erro = null;
+      },
+      ...config.reducers
+    }
   });
 
   const { fetchStarted, fetchSuccess, fetchFail } = slice.actions;
