@@ -3,18 +3,22 @@ import estilos from "./PostarFotoUsuario.module.css";
 import Input from "../../Forms/Input/Input.js";
 import Button from "../../Forms/Button/Button.js";
 import useForm from "../../../Hooks/useForm.js";
-import useFetch from "../../../Hooks/useFetch.js";
-import { PHOTO_POST } from "../../../api";
 import Erro from "../../Feedback/Erro";
 import { useNavigate } from "react-router-dom";
 import Head from "../../Head";
+import { useDispatch, useSelector } from "react-redux";
+import { photoPost } from "../../../store/photoPost";
 
 const PostarFotoUsuario = () => {
+    // Estados globais.
+    const dispatch = useDispatch();
+    const { token } = useSelector((state) => state.token.dados);
+    const { loading, dados, erro } = useSelector((state) => state.photoPost);
+
     const nome = useForm();
     const peso = useForm("numero");
     const idade = useForm("numero");
     const [img, setImg] = React.useState({});
-    const { dados, erro, loading, request } = useFetch();
     const navegar = useNavigate();
 
     function handleSubmit(event) {
@@ -26,10 +30,7 @@ const PostarFotoUsuario = () => {
         formData.append("peso", peso.valor);
         formData.append("idade", idade.valor);
 
-        const token = window.localStorage.getItem("token");
-        const { url, options } = PHOTO_POST(formData, token);
-
-        request(url, options);
+        dispatch(photoPost({ formData, token }));
     }
 
     function handleImgChange({target}) {
