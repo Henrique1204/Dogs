@@ -2,22 +2,33 @@ import React from "react";
 import FeedModal from "./FeedModal/FeedModal.js";
 import FeedPhotos from "./FeedPhotos/FeedPhotos.js";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { loadNewPhotos, resetFeedState } from "../../store/feed.js";
+import Loading from "../Feedback/Loading.js";
+import Erro from "../Feedback/Erro.js";
 
 const Feed = ({ user }) => {
+    // Estados globais.
+    const { loading, erro, lista , infinite} = useSelector((state) => state.feed);
+    const dispatch = useDispatch();
+
     const [modalPhoto, setModalPhoto] = React.useState(null);
-    const [paginas, setPaginas] = React.useState([1]);
-    const [infinito, setInfinito] = React.useState(true);
+
+    React.useEffect(() => {
+        dispatch(resetFeedState());
+        dispatch(loadNewPhotos({ user, total: 6 }));
+    }, [dispatch, user]);
 
     React.useEffect(() => {
         let wait = false;
 
         function scrollInfinito() {
-            if (infinito) {
+            if (infinite) {
                 const scroll = window.scrollY;
                 const altura = document.body.offsetHeight - window.innerHeight;
     
                 if (scroll > (altura * 0.75) && !wait) {
-                    setPaginas((pag) => [...pag, pag.length + 1]);
+                    dispatch(loadNewPhotos({ user, total: 6 }));
                     wait = true;
     
                     setTimeout(() => {
@@ -34,17 +45,14 @@ const Feed = ({ user }) => {
             window.removeEventListener("wheel", scrollInfinito);
             window.removeEventListener("scroll", scrollInfinito);
         }
-    }, [infinito]);
+    }, [infinite, dispatch, user]);
 
     return (
         <>
             { modalPhoto && <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} /> }
-
-            {
-                paginas.map((pag) => (
-                    <FeedPhotos key={pag} user={user} page={pag} setModalPhoto={setModalPhoto} setInfinito={setInfinito} />
-                ))
-            }
+            { lista.length > 0 && <FeedPhotos setModalPhoto={setModalPhoto} /> }
+            { loading && <Loading /> }
+            { erro && <Erro erro={erro} /> }
         </>
     );
 };
